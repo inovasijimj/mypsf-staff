@@ -1,1 +1,53 @@
-ccc
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MyPassport Smart Finder</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="Logo JIM.png" class="logo">
+
+<h1>MyPassport Smart Finder (MyPSF)</h1>
+
+<p class="subtitle">
+Jabatan Imigresen Malaysia
+</p>
+
+    <div class="search-box">
+
+    <input
+    type="text"
+    id="search"
+    placeholder="📷 Scan Barcode atau Masukkan No Resit / No Kad Pengenalan"
+    autocomplete="off"
+    autofocus
+    oninput="this.value=this.value.toUpperCase()"
+    
+    <button onclick="cariPassport()">
+        Cari Passport
+    </button>
+
+</div>
+
+    <div id="result" class="result">
+
+        Sila masukkan No Resit atau No Kad Pengenalan.
+
+    </div>
+
+</div>
+
+<script src="script.js?v=5"></script>
+
+</body>
+
+</html>
