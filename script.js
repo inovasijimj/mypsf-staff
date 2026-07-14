@@ -28,19 +28,19 @@ async function cariPassport() {
 
                     <p><b>Status :</b> ${data.status}</p>
 
-                    <p><b>Tarikh Diserah :</b> ${data.tarikh || "-"}</p>
+                    <p><b>Tarikh Diserah :</b> ${
+                    data.tarikh
+                    ? new Date(data.tarikh).toLocaleDateString("ms-MY")
+                    : "-"
+                    }</p>
 
-                    <p><b>Catatan :</b> ${data.catatan || "-"}</p>
-
-                    <br>
-
-                    <button onclick="telahDiserah()">
-                        ✅ Telah Diserah
-                    </button>
-
-                    <button onclick="tidakDiserah()">
-                        ❌ Tidak Dapat Diserah
-                    </button>
+                   <p><b>Catatan :</b> ${
+                        String(data.catatan).trim() === "1" ? "PMA lama rosak" :
+                        String(data.catatan).trim() === "2" ? "Dokumen tidak lengkap" :
+                        String(data.catatan).trim() === "3" ? "Pemohon tidak hadir" :
+                        String(data.catatan).trim() === "4" ? "Lain-lain" :
+                        data.catatan || "-"
+                    }</p>
 
                     <div id="statusMsg" style="margin-top:20px;"></div>
 
@@ -113,36 +113,64 @@ async function tidakDiserah() {
 
     const sebab = prompt(
 `Sebab tidak dapat diserah
+(Sila masukkan nombor sebagai pilihan)
 
 1. PMA lama rosak
 2. Dokumen tidak lengkap
 3. Pemohon tidak hadir
 4. Lain-lain`
-    );
+);
 
     if (!sebab) return;
 
-    const keyword = document.getElementById("search").value.trim();
+// Tukar nombor pilihan kepada catatan sebenar
+const pilihanSebab = {
+    "1": "PMA lama rosak",
+    "2": "Dokumen tidak lengkap",
+    "3": "Pemohon tidak hadir",
+    "4": "Lain-lain"
+};
+
+let catatan = pilihanSebab[sebab.trim()];
+
+if (!catatan) {
+    alert("Sila masukkan nombor 1, 2, 3 atau 4 sahaja.");
+    return;
+}
+
+// Jika pilih 4, minta pengguna masukkan sebab lain
+if (sebab.trim() === "4") {
+    const sebabLain = prompt("Sila nyatakan sebab lain:");
+
+    if (!sebabLain || !sebabLain.trim()) return;
+
+    catatan = sebabLain.trim();
+}
+
+const keyword = document.getElementById("search").value.trim();
 
     const response = await fetch(
         API_URL +
         "?action=update" +
         "&search=" + encodeURIComponent(keyword) +
         "&status=" + encodeURIComponent("TIDAK DAPAT DISERAH") +
-        "&catatan=" + encodeURIComponent(sebab)
+        "&catatan=" + encodeURIComponent(catatan)
     );
 
     const data = await response.json();
 
     document.getElementById("statusMsg").innerHTML = `
-<div style="
-    background:#f8d7da;
-    color:#721c24;
-    padding:15px;
-    border-radius:10px;
-    font-weight:bold;">
-    ❌ Status dikemaskini.
-</div>`;
+    <div style="
+        background:#d4edda;
+        color:#155724;
+        padding:15px;
+        border-radius:10px;
+        margin-top:15px;
+        font-weight:bold;
+    ">
+        ✅ Status berjaya dikemaskini.
+    </div>
+`;
 
 setTimeout(function () {
 
