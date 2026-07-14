@@ -101,7 +101,7 @@ async function telahDiserah() {
         API_URL +
         "?action=update" +
         "&search=" + encodeURIComponent(keyword) +
-        "&status=" + encodeURIComponent("DISERAH") +
+        "&status=" + encodeURIComponent("TELAH DISERAHKAN") +
         "&catatan=" + encodeURIComponent("Pasport telah diserah")
     );
 
@@ -181,7 +181,7 @@ const keyword = document.getElementById("search").value.trim();
         API_URL +
         "?action=update" +
         "&search=" + encodeURIComponent(keyword) +
-        "&status=" + encodeURIComponent("TIDAK DAPAT DISERAH") +
+        "&status=" + encodeURIComponent("PENYERAHAN TIDAK BERJAYA") +
         "&catatan=" + encodeURIComponent(catatan)
     );
 
