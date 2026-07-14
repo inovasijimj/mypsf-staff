@@ -42,6 +42,14 @@ async function cariPassport() {
                         data.catatan || "-"
                     }</p>
 
+                    <button onclick="telahDiserah()">
+                        ✅ Telah Diserah
+                    </button>
+                    
+                    <button onclick="tidakDiserah()">
+                        ❌ Tidak Dapat Diserah
+                    </button>
+
                     <div id="statusMsg" style="margin-top:20px;"></div>
 
                 </div>
