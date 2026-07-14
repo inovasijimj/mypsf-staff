@@ -42,13 +42,33 @@ async function cariPassport() {
                         data.catatan || "-"
                     }</p>
 
-                    <button onclick="telahDiserah()">
-                        ✅ Telah Diserah
-                    </button>
-                    
-                    <button onclick="tidakDiserah()">
-                        ❌ Tidak Dapat Diserah
-                    </button>
+                   ${data.status === "SEDIA UNTUK PENGAMBILAN" ? `
+
+<div style="margin-top:25px;">
+
+<button onclick="telahDiserah()"
+style="background:#198754;color:white;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;margin-right:10px;font-weight:bold;">
+✅ Serah Pasport
+</button>
+
+<button onclick="tidakDiserah()"
+style="background:#dc3545;color:white;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-weight:bold;">
+❌ Tidak Dapat Diserah
+</button>
+
+</div>
+
+` : `
+<div style="
+margin-top:20px;
+padding:15px;
+background:#f8f9fa;
+border-radius:8px;
+text-align:center;
+font-weight:bold;">
+Tiada tindakan diperlukan.
+</div>
+`}
 
                     <div id="statusMsg" style="margin-top:20px;"></div>
 
