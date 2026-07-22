@@ -226,3 +226,158 @@ Tiada tindakan diperlukan.
     }
 
 }
+async function telahDiserah() {
+
+    const keyword = document.getElementById("search").value.trim();
+
+    const response = await fetch(
+        API_URL +
+        "?action=update" +
+        "&search=" + encodeURIComponent(keyword) +
+        "&status=" + encodeURIComponent("TELAH DISERAHKAN") +
+        "&catatan=" + encodeURIComponent("Pasport telah diserah")
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+
+        document.getElementById("statusMsg").innerHTML = `
+        <div class="success-message">
+            <span class="material-icons">check_circle</span>
+            Status berjaya dikemaskini.
+        </div>`;
+
+        setTimeout(function () {
+
+            document.getElementById("search").value = "";
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("search").focus();
+
+        }, 2500);
+
+    } else {
+
+        alert("❌ Gagal mengemaskini.");
+
+    }
+
+}
+
+async function tidakDiserah() {
+
+    const sebab = prompt(
+`Sebab tidak dapat diserah
+
+1. PMA lama rosak
+2. Dokumen tidak lengkap
+3. Pemohon tidak hadir
+4. Lain-lain`
+    );
+
+    if (!sebab) return;
+
+    const pilihanSebab = {
+        "1": "PMA lama rosak",
+        "2": "Dokumen tidak lengkap",
+        "3": "Pemohon tidak hadir",
+        "4": "Lain-lain"
+    };
+
+    let catatan = pilihanSebab[sebab.trim()];
+
+    if (!catatan) {
+
+        alert("Sila masukkan nombor 1, 2, 3 atau 4 sahaja.");
+
+        return;
+
+    }
+
+    if (sebab.trim() === "4") {
+
+        const sebabLain = prompt("Sila nyatakan sebab lain:");
+
+        if (!sebabLain || !sebabLain.trim()) return;
+
+        catatan = sebabLain.trim();
+
+    }
+
+    const keyword = document.getElementById("search").value.trim();
+
+    const response = await fetch(
+        API_URL +
+        "?action=update" +
+        "&search=" + encodeURIComponent(keyword) +
+        "&status=" + encodeURIComponent("PENYERAHAN TIDAK BERJAYA") +
+        "&catatan=" + encodeURIComponent(catatan)
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+
+        document.getElementById("statusMsg").innerHTML = `
+        <div class="success-message">
+            <span class="material-icons">check_circle</span>
+            Status berjaya dikemaskini.
+        </div>`;
+
+        setTimeout(function () {
+
+            document.getElementById("search").value = "";
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("search").focus();
+
+        }, 2500);
+
+    } else {
+
+        alert("❌ Gagal mengemaskini.");
+
+    }
+
+}
+
+// ===============================
+// Auto Focus + Barcode + Manual Entry
+// ===============================
+
+window.onload = function () {
+
+    const input = document.getElementById("search");
+
+    input.focus();
+
+    let timer;
+
+    input.addEventListener("input", function () {
+
+        clearTimeout(timer);
+
+        timer = setTimeout(function () {
+
+            if (input.value.trim() !== "") {
+
+                cariPassport();
+
+            }
+
+        }, 250);
+
+    });
+
+    input.addEventListener("keydown", function (e) {
+
+        if (e.key === "Enter") {
+
+            e.preventDefault();
+
+            cariPassport();
+
+        }
+
+    });
+
+};
