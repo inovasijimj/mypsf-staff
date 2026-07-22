@@ -47,12 +47,12 @@ async function cariPassport() {
 <div style="margin-top:25px;">
 
 <button onclick="telahDiserah()"
-style="background:#198754;color:white;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;margin-right:10px;font-weight:bold;">
+style="background:#198754;color:white;padding:14px 28px;border:none;border-radius:12px;cursor:pointer;margin-right:12px;font-weight:bold;font-size:16px;min-width:210px;box-shadow:0 4px 10px rgba(0,0,0,.15);">
 ✅ Serah Pasport
 </button>
 
 <button onclick="tidakDiserah()"
-style="background:#dc3545;color:white;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-weight:bold;">
+style="background:#dc3545;color:white;padding:14px 28px;border:none;border-radius:12px;cursor:pointer;font-weight:bold;font-size:16px;min-width:210px;box-shadow:0 4px 10px rgba(0,0,0,.15);">
 ❌ Tidak Dapat Diserah
 </button>
 
