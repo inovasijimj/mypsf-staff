@@ -67,3 +67,60 @@ button:hover{
     font-size:18px;
     line-height:1.8;
 }
+.success-message{
+    margin-top:20px;
+    padding:15px 20px;
+    border-radius:12px;
+    background:#d1e7dd;
+    color:#0f5132;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.action-panel{
+    margin-top:25px;
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn-success,
+.btn-danger{
+    border:none;
+    border-radius:10px;
+    padding:14px 24px;
+    font-size:15px;
+    cursor:pointer;
+    transition:.25s;
+    font-weight:bold;
+}
+
+.btn-success{
+    background:#198754;
+    color:#fff;
+}
+
+.btn-success:hover{
+    background:#157347;
+}
+
+.btn-danger{
+    background:#dc3545;
+    color:#fff;
+}
+
+.btn-danger:hover{
+    background:#bb2d3b;
+}
+
+.action-info{
+    margin-top:20px;
+    padding:15px;
+    background:#f8f9fa;
+    border-radius:10px;
+    color:#6c757d;
+    text-align:center;
+    font-weight:600;
+}
