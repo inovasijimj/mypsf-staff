@@ -110,23 +110,16 @@ input:focus{
 }
 
 button{
-
-    width:70px;
-
+    min-width:180px;
+    height:62px;
+    padding:0 25px;
     border:none;
-
     border-radius:15px;
-
     background:#0b2d6b;
-
     color:#fff;
-
-    font-size:24px;
-
+    font-size:20px;
     cursor:pointer;
-
     transition:.25s;
-
 }
 
 button:hover{
